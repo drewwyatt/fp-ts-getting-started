@@ -2,7 +2,7 @@
 import type { Eq } from 'fp-ts/lib/Eq'
 
 function elem<A>(E: Eq<A>): (a: A, as: Array<A>) => boolean {
-  return (a: A, as: Array<A>) => as.some((b) => E.equals(a, b))
+  return (a: A, as: Array<A>) => as.some(b => E.equals(a, b))
 }
 
 const eqNum: Eq<number> = {
@@ -10,4 +10,4 @@ const eqNum: Eq<number> = {
 }
 
 console.log(elem(eqNum)(1, [1, 2, 3, 4]))
-console.log(elem(eqNum)(1, [2, 2, 3, 4]))
+console.log(elem(eqNum)(2, [2, 2, 3, 4]))
