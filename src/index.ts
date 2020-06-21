@@ -22,7 +22,7 @@ yargs
         .find(f => f.name === argv.name || f.name === [argv.name, '.ts'].join(''))
 
       if (file) {
-        console.log('file', file)
+        console.log(`Found exercise "${file.name}" for input: "${argv.name}"`)
         nodemon({
           script: join(__dirname, file.name),
           ext: 'ts',
@@ -30,14 +30,14 @@ yargs
 
         nodemon
           .on('start', () => {
-            console.log('App has started')
+            console.log('[nodemon] ✅ Exercise Ready')
           })
           .on('quit', () => {
-            console.log('App has quit')
+            console.log('[nodemon] 👋 Extercise stopped')
             process.exit()
           })
-          .on('restart', files => {
-            console.log('App restarted due to: ', files)
+          .on('restart', () => {
+            console.log('[nodemon] 🌀 Change detected: restarting...')
           })
       } else {
         console.log(`Could not find file: "${argv.name}"`)
