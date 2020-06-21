@@ -1,0 +1,25 @@
+{
+  "name": "fp-ts-getting-started",
+  "description": "Working files for https://gcanti.github.io/fp-ts/learning-resources/",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts"
+  },
+  "dependencies": {
+    "fp-ts": "^2.6.6",
+    "inquirer": "^7.2.0",
+    "yargs": "^15.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.13",
+    "@types/prettier": "^2",
+    "@types/yargs": "^15",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  }
+}
