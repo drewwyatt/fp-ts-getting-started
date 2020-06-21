@@ -1,6 +1,7 @@
 // https://dev.to/gcanti/getting-started-with-fp-ts-setoid-39f3
 import { getEq } from 'fp-ts/lib/Array'
 import { Eq, getStructEq, eqNumber, contramap } from 'fp-ts/lib/Eq'
+import type { User } from './utils'
 
 function elem<A>(E: Eq<A>): (a: A, as: Array<A>) => boolean {
   return (a: A, as: Array<A>) => as.some(b => E.equals(a, b))
@@ -51,12 +52,13 @@ console.log('eqArrayOfPoints', eqArrayOfPoints.equals([{ x: 1, y: 2 }], [{ x: 2,
 
 // contramap
 
-type User = {
-  userId: number
-  name: string
-}
-
 const eqUser = contramap((user: User) => user.userId)(eqNumber)
 
-eqUser.equals({ userId: 1, name: 'Giulio' }, { userId: 1, name: 'Giulio Canti' }) // true
-eqUser.equals({ userId: 1, name: 'Giulio' }, { userId: 2, name: 'Giulio' }) // false
+eqUser.equals(
+  { userId: 1, name: 'Giulio', age: 7 },
+  { userId: 1, name: 'Giulio Canti', age: 7 },
+) // true
+eqUser.equals(
+  { userId: 1, name: 'Giulio', age: 7 },
+  { userId: 2, name: 'Giulio', age: 7 },
+) // false
